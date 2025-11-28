@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSphere - Smart School Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        // default theme: cek localStorage
+        if (
+            localStorage.theme === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+            document.documentElement.classList.add('dark')
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark')
+                localStorage.theme = 'light'
+            } else {
+                html.classList.add('dark')
+                localStorage.theme = 'dark'
+            }
+        }
+    </script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+
+    <!-- NAVBAR -->
+    <nav class="flex justify-between items-center px-10 py-5 bg-white/70 dark:bg-gray-900/70 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800 fixed w-full z-50">
+        <h1 class="text-2xl font-bold">EduSphere</h1>
+
+        <div class="space-x-6 hidden md:block">
+            <a href="#" class="hover:text-indigo-600 dark:hover:text-indigo-400">Home</a>
+            <a href="#features" class="hover:text-indigo-600 dark:hover:text-indigo-400">Features</a>
+            <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400">About</a>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <!-- THEME TOGGLE BUTTON -->
+            <button onclick="toggleTheme()"
+                class="p-2 rounded-xl border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                <span id="themeIcon">🌙</span>
+            </button>
+
+            <button class="px-5 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-xl text-white font-medium">
+                Login
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        // ganti icon sesuai mode
+        const observer = new MutationObserver(() => {
+            document.getElementById('themeIcon').textContent =
+                document.documentElement.classList.contains('dark') ? '☀️' : '🌙';
+        });
+        observer.observe(document.documentElement, { attributes: true });
+    </script>
+
+    <!-- HERO SECTION -->
+    <section class="flex flex-col items-center text-center pt-40 pb-32 px-6">
+        <h2 class="text-5xl font-extrabold leading-tight mb-6">
+            Sistem Sekolah Modern<br>
+            <span class="text-indigo-600 dark:text-indigo-400">Terintegrasi dalam Satu Platform</span>
+        </h2>
+
+        <p class="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mb-10">
+            EduSphere membantu sekolah mengelola pembayaran, presensi, ujian online, dan komunikasi orang tua — semuanya dalam satu ekosistem yang mudah digunakan.
+        </p>
+
+        <button class="px-8 py-3 bg-indigo-600 hover:bg-indigo-700 rounded-xl font-semibold text-white shadow-lg">
+            Coba Gratis
+        </button>
+
+        <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e"
+             class="mt-16 rounded-2xl shadow-lg w-full max-w-4xl border border-gray-300 dark:border-gray-800" />
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="px-10 py-20">
+        <h3 class="text-3xl font-bold text-center mb-14">Fitur Utama</h3>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-indigo-500 transition">
+                <h4 class="text-xl font-bold mb-3">Pembayaran Sekolah</h4>
+                <p class="text-gray-600 dark:text-gray-400">Pantau SPP, cicilan, tagihan, dan riwayat pembayaran dengan mudah.</p>
+            </div>
+
+            <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-indigo-500 transition">
+                <h4 class="text-xl font-bold mb-3">Presensi & Izin Orang Tua</h4>
+                <p class="text-gray-600 dark:text-gray-400">Orang tua dapat mengajukan izin langsung dari aplikasi.</p>
+            </div>
+
+            <div class="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl border border-gray-300 dark:border-gray-700 hover:border-indigo-500 transition">
+                <h4 class="text-xl font-bold mb-3">Ujian Online</h4>
+                <p class="text-gray-600 dark:text-gray-400">LMS ringan untuk ujian pilihan ganda & essay.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="px-10 py-20 border-t border-gray-200 dark:border-gray-800">
+        <h3 class="text-3xl font-bold text-center mb-10">Tentang EduSphere</h3>
+
+        <p class="max-w-3xl mx-auto text-center text-gray-600 dark:text-gray-400 text-lg">
+            EduSphere dibangun sebagai aplikasi gratis untuk sekolah dengan dukungan donasi.
+            Tujuannya: membuat sistem administrasi sekolah bisa dijalankan dengan mudah, cepat, dan aman untuk semua.
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="px-10 py-8 border-t border-gray-200 dark:border-gray-800 text-center text-gray-600 dark:text-gray-500">
+        © 2025 EduSphere — Platform Sekolah Modern
+    </footer>
+
+</body>
+</html>
